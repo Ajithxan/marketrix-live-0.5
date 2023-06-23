@@ -409,7 +409,7 @@ const sentInquiryToDb = (data) => {
       email: data.email,
       phone_no: data.phone,
       inquiry_type: data.inquiryType,
-      inquiry_status: "pending",
+      inquiry_status: "request",
       website_domain: currentUrl,
     };
 
