@@ -422,7 +422,7 @@ const sentInquiryToDb = (data) => {
       body: JSON.stringify(inquiry),
     };
 
-    fetch(`${serverBaseUrl}client/live/create_inquiry`, requestOptions)
+    fetch(`${serverBaseUrl}meet-live/inquiries/create`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log("data", data);
