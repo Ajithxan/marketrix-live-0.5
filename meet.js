@@ -32,6 +32,7 @@ bootstrapBundleScript.setAttribute('src', "https://cdn.jsdelivr.net/npm/bootstra
 watchScript.setAttribute('src', `${CDNlink}libraries/watch.js`)
 
 const socketUrl = "https://marketrix-soc.creative-hub.co/" // "http://192.168.1.76:8081"
+const serverBaseUrl = "http://localhost:8080/"
 
 // script tags
 document.body.prepend(videoSDKScript)
@@ -189,7 +190,8 @@ const submit = () => {
         console.log(response); // ok
 
         if (!response.status) {
-            alert(response.message);
+            alert(response.message+ " ___ We will contact you soon through email") ;
+            sentInquiryToDb(visitor)
         } else {
             socket.on("userResponseToVisitor", (data) => {
                 console.log("userResponseToVisitor...", data);
@@ -395,3 +397,33 @@ const meetingObj = {
         }
     }
 }
+
+
+const sentInquiryToDb = (data) => {
+
+    let currentUrl = window.location.href; 
+
+    let inquiry = {
+      name: data.name,
+      designation: data.designation,
+      email: data.email,
+      phone_no: data.phone,
+      inquiry_type: data.inquiryType,
+      inquiry_status: "pending",
+      website_domain: currentUrl,
+    };
+
+
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inquiry),
+    };
+
+    fetch(`${serverBaseUrl}client/live/create_inquiry`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("data", data);
+      });
+  };
