@@ -401,7 +401,7 @@ const meetingObj = {
 
 const sentInquiryToDb = (data) => {
 
-    let currentUrl = window.location.href; 
+    let currentUrl = window.location.hostname; 
 
     let inquiry = {
       name: data.name,
@@ -409,6 +409,7 @@ const sentInquiryToDb = (data) => {
       company:data.company,
       email: data.email,
       phone_no: data.phone,
+      message: data.message,
       inquiry_type: data.inquiryType,
       inquiry_status: "requested",
       website_domain: currentUrl,
