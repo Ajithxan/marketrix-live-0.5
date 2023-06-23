@@ -406,10 +406,11 @@ const sentInquiryToDb = (data) => {
     let inquiry = {
       name: data.name,
       designation: data.designation,
+      company:data.company,
       email: data.email,
       phone_no: data.phone,
       inquiry_type: data.inquiryType,
-      inquiry_status: "request",
+      inquiry_status: "requested",
       website_domain: currentUrl,
     };
 
